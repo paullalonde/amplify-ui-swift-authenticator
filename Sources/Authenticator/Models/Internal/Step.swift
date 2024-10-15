@@ -19,6 +19,7 @@ enum Step {
     case continueSignInWithEmailMFASetup
     case continueSignInWithTOTPSetup(totpSetupDetails: TOTPSetupDetails)
     case confirmSignInWithMFACode(deliveryDetails: AuthCodeDeliveryDetails?)
+    case confirmSignInWithOTP(deliveryDetails: AuthCodeDeliveryDetails?)
     case confirmSignInWithNewPassword
     case signUp
     case confirmSignUp(deliveryDetails: AuthCodeDeliveryDetails?)
@@ -63,6 +64,8 @@ enum Step {
             return .continueSignInWithEmailMFASetup
         case .confirmSignInWithMFACode:
             return .confirmSignInWithMFACode
+        case .confirmSignInWithOTP:
+            return .confirmSignInWithOTP
         case .confirmSignInWithNewPassword:
             return .confirmSignInWithNewPassword
         case .signUp:

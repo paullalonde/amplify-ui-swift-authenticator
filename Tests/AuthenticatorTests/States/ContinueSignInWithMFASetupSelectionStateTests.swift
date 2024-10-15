@@ -44,7 +44,7 @@ class ContinueSignInWithMFASetupSelectionStateTests: XCTestCase {
         XCTAssertEqual(authenticatorState.setCurrentStepCount, 1)
         let currentStep = try XCTUnwrap(authenticatorState.setCurrentStepValue)
         guard case .continueSignInWithMFASetupSelection = currentStep else {
-            XCTFail("Expected confirmSignInWithTOTPCode, was \(currentStep)")
+            XCTFail("Expected continueSignInWithMFASetupSelection, was \(currentStep)")
             return
         }
     }

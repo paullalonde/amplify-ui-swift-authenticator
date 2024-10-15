@@ -31,9 +31,9 @@ enum SignInNextStepForTesting: String, CaseIterable, Identifiable {
         case .continueSignInWithMFASetupSelection:
             return .continueSignInWithMFASetupSelection(.init([.email, .totp]))
         case .confirmSignInWithEmailMFACode:
-            return .confirmSignInWithEmailMFACode(.init(destination: .email("h***@a***.com")))
+            return .confirmSignInWithOTP(.init(destination: .email("h***@a***.com")))
         case .confirmSignInWithPhoneMFACode:
-            return .confirmSignInWithEmailMFACode(.init(destination: .phone("+11***")))
+            return .confirmSignInWithOTP(.init(destination: .phone("+11***")))
         }
     }
 }

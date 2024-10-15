@@ -1,13 +1,13 @@
 {
-  "originHash" : "aa50950c4756f6cc1e41a45105a6b4bbed3e817c73e36d24f00ec955e5792ec9",
+  "originHash" : "2bc1bcce3d1d696209bfe1523e1c02fee4efba4d5519df843afdad7c30fc0bee",
   "pins" : [
     {
       "identity" : "amplify-swift",
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/aws-amplify/amplify-swift",
       "state" : {
-        "revision" : "fa6ca64f42c3e4e72cf6b62c30bc45b2be7b05bc",
-        "version" : "2.35.1"
+        "branch" : "feat/email-mfa-support-public",
+        "revision" : "f332d126512fd9e28cbe07f4b3fdb36ab9cff4cb"
       }
     },
     {
@@ -24,8 +24,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/awslabs/aws-crt-swift",
       "state" : {
-        "revision" : "0d0a0cf2e2cb780ceeceac190b4ede94f4f96902",
-        "version" : "0.26.0"
+        "revision" : "7b42e0343f28b3451aab20840dc670abd12790bd",
+        "version" : "0.36.0"
       }
     },
     {
@@ -33,8 +33,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/awslabs/aws-sdk-swift.git",
       "state" : {
-        "revision" : "47922c05dd66be717c7bce424651a534456717b7",
-        "version" : "0.36.2"
+        "revision" : "828358a2c39d138325b0f87a2d813f4b972e5f4f",
+        "version" : "1.0.0"
       }
     },
     {
@@ -42,8 +42,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/smithy-lang/smithy-swift",
       "state" : {
-        "revision" : "8a5b0105c1b8a1d26a9435fb0af3959a7f5de578",
-        "version" : "0.41.1"
+        "revision" : "0ed3440f8c41e27a0937364d5035d2d4fefb8aa3",
+        "version" : "0.71.0"
       }
     },
     {
@@ -60,8 +60,8 @@
       "kind" : "remoteSourceControl",
       "location" : "https://github.com/apple/swift-log.git",
       "state" : {
-        "revision" : "e97a6fcb1ab07462881ac165fdbb37f067e205d5",
-        "version" : "1.5.4"
+        "revision" : "9cb486020ebf03bfa5b5df985387a14a98744537",
+        "version" : "1.6.1"
       }
     }
   ],

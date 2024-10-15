@@ -34,9 +34,10 @@ struct ConfirmSignInWithCodeView<Header: View,
         ))
     }
 
-    private func getCurrentMFAType() -> AuthenticatorMFAType  {
+    private func getCurrentMFAType() -> AuthenticatorFactorType  {
         switch authenticatorState.step {
-        case .confirmSignInWithMFACode(let deliveryDetails):
+        case .confirmSignInWithMFACode(let deliveryDetails),
+        .confirmSignInWithOTP(let deliveryDetails):
             switch deliveryDetails?.destination {
             case .email:
                 return .email
@@ -55,9 +56,9 @@ struct ConfirmSignInWithCodeView<Header: View,
     private var textFieldLabel: String {
         switch getCurrentMFAType() {
         case .sms, .none:
-            return "authenticator.confirmSignInWithMFACode.field.phone.code.label".localized()
+            return "authenticator.confirmSignInWithCode.field.phone.code.label".localized()
         case .email:
-            return "authenticator.confirmSignInWithMFACode.field.email.code.label".localized()
+            return "authenticator.confirmSignInWithCode.field.email.code.label".localized()
         case .totp:
             return "authenticator.field.totp.code.label".localized()
         }

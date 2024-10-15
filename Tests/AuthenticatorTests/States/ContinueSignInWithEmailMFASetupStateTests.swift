@@ -9,14 +9,16 @@ import Amplify
 @testable import Authenticator
 import XCTest
 
-class ConfirmSignInWithCodeStateTests: XCTestCase {
-    private var state: ConfirmSignInWithCodeState!
+class ContinueSignInWithEmailMFASetupStateTests: XCTestCase {
+    private var state: ContinueSignInWithEmailMFASetupState!
     private var authenticatorState: MockAuthenticatorState!
     private var authenticationService: MockAuthenticationService!
 
     override func setUp() {
-        state = ConfirmSignInWithCodeState(credentials: Credentials())
         authenticatorState = MockAuthenticatorState()
+        state = ContinueSignInWithEmailMFASetupState(credentials: Credentials())
+        state.email = "test@test.com"
+
         authenticationService = MockAuthenticationService()
         authenticatorState.authenticationService = authenticationService
         state.configure(with: authenticatorState)
@@ -28,26 +30,26 @@ class ConfirmSignInWithCodeStateTests: XCTestCase {
         authenticationService = nil
     }
 
-    func testConfirmSignIn_withSuccess_shouldSetNextStep() async throws {
-        authenticationService.mockedConfirmSignInResult = .init(nextStep: .done)
+    func testContinueSignIn_withSuccess_shouldSetNextStep() async throws {
+        authenticationService.mockedConfirmSignInResult = .init(nextStep: .confirmSignInWithOTP(.init(destination: .email("test@test.com"))))
         authenticationService.mockedCurrentUser = MockAuthenticationService.User(
             username: "username",
             userId: "userId"
         )
 
-        try await state.confirmSignIn()
+        try await state.continueSignIn()
         XCTAssertEqual(authenticationService.confirmSignInCount, 1)
         XCTAssertEqual(authenticatorState.setCurrentStepCount, 1)
         let currentStep = try XCTUnwrap(authenticatorState.setCurrentStepValue)
-        guard case .signedIn(_) = currentStep else {
-            XCTFail("Expected signedIn, was \(currentStep)")
+        guard case .confirmSignInWithOTP = currentStep else {
+            XCTFail("Expected confirmSignInWithOTP, was \(currentStep)")
             return
         }
     }
 
-    func testConfirmSignIn_withError_shouldSetErrorMessage() async throws {
+    func testContinueSignIn_withError_shouldSetErrorMessage() async throws {
         do {
-            try await state.confirmSignIn()
+            try await state.continueSignIn()
             XCTFail("Should not succeed")
         } catch {
             guard let authenticatorError = error as? AuthenticatorError else {
@@ -63,10 +65,10 @@ class ConfirmSignInWithCodeStateTests: XCTestCase {
         }
     }
 
-    func testConfirmSignIn_withSuccess_andFailedToSignIn_shouldSetErrorMessage() async throws {
+    func testContinueSignIn_withSuccess_andFailedToSignIn_shouldSetErrorMessage() async throws {
         authenticationService.mockedConfirmSignInResult = .init(nextStep: .done)
         do {
-            try await state.confirmSignIn()
+            try await state.continueSignIn()
             XCTFail("Should not succeed")
         } catch {
             XCTAssertEqual(authenticationService.confirmSignInCount, 1)
@@ -81,28 +83,5 @@ class ConfirmSignInWithCodeStateTests: XCTestCase {
             }
             await task.value
         }
-    }
-
-    func testDeliveryDetails_onConfirmSignInWithSMSMFACodeStep_shouldReturnDetails() throws {
-        let destination = DeliveryDestination.sms("123456789")
-        authenticatorState.mockedStep = .confirmSignInWithMFACode(deliveryDetails: .init(destination: destination))
-
-        let deliveryDetails = try XCTUnwrap(state.deliveryDetails)
-        XCTAssertEqual(deliveryDetails.destination, destination)
-    }
-
-    func testDeliveryDetails_onConfirmSignInWithEmailMFACodeStep_shouldReturnDetails() throws {
-        let destination = DeliveryDestination.email("test@test.com")
-        authenticatorState.mockedStep = .confirmSignInWithMFACode(deliveryDetails: .init(destination: destination))
-
-        let deliveryDetails = try XCTUnwrap(state.deliveryDetails)
-        XCTAssertEqual(deliveryDetails.destination, destination)
-    }
-
-    func testDeliveryDetails_onUnexpectedStep_shouldReturnNil() throws {
-        let destination = DeliveryDestination.sms("123456789")
-        authenticatorState.mockedStep = .confirmSignUp(deliveryDetails: .init(destination: destination))
-
-        XCTAssertNil(state.deliveryDetails)
     }
 }

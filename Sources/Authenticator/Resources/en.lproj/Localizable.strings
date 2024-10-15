@@ -68,10 +68,11 @@
 "authenticator.confirmSignInWithNewPassword.title" = "Set a new password";
 "authenticator.confirmSignInWithNewPassword.button.submit" = "Submit";
 
+/* Confirm Sign In with OTP view */
+"authenticator.confirmSignInWithOTP.title" = "Verify your sign-in";
+
 /* Confirm Sign In with MFA view */
 "authenticator.confirmSignInWithMFACode.title" = "Verify your sign-in";
-"authenticator.confirmSignInWithMFACode.field.email.code.label" = "Enter the verification code sent to your email to complete this sign-in.";
-"authenticator.confirmSignInWithMFACode.field.phone.code.label" = "Enter the verification code sent to your phone to complete this sign-in.";
 
 /* Confirm Sign In with Custom Challenge view */
 "authenticator.confirmSignInWithCustomChallenge.title" = "Enter your Sign In code";
@@ -79,6 +80,8 @@
 /* Confirm Sign In with Code */
 "authenticator.confirmSignInWithCode.button.submit" = "Submit";
 "authenticator.confirmSignInWithCode.button.backToSignIn" = "Back to Sign In";
+"authenticator.confirmSignInWithCode.field.email.code.label" = "Enter the verification code sent to your email to complete this sign-in.";
+"authenticator.confirmSignInWithCode.field.phone.code.label" = "Enter the verification code sent to your phone to complete this sign-in.";
 
 /* Confirm Sign In with TOTP */
 "authenticator.confirmSignInWithCode.totp.title" = "Enter your one-time passcode";
