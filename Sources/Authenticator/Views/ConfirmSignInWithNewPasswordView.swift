@@ -71,7 +71,7 @@ public struct ConfirmSignInWithNewPasswordView<Header: View,
             )
             .focused(focusedField.projectedValue, equals: .newPassword)
             .textContentType(.password)
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
             .textInputAutocapitalization(.never)
         #endif
 
@@ -83,7 +83,7 @@ public struct ConfirmSignInWithNewPasswordView<Header: View,
             )
             .focused(focusedField.projectedValue, equals: .newPasswordConfirmation)
             .textContentType(.password)
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
             .textInputAutocapitalization(.never)
         #endif
 

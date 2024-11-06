@@ -55,7 +55,7 @@ public struct SignUpView<Header: View,
                     validator: validators.validator(for: field.field)
                 )
                 .focused(focusedField.projectedValue, equals: field.field.attributeType)
-            #if os(iOS)
+            #if os(iOS) || os(tvOS)
                 .textInputAutocapitalization(.never)
             #endif
             }

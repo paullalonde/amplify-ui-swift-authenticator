@@ -52,7 +52,7 @@ public struct ConfirmVerifyUserView<Header: View,
 
             )
             .textContentType(.oneTimeCode)
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
             .keyboardType(.default)
         #endif
 

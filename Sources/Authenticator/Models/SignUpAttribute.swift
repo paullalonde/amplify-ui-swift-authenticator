@@ -33,7 +33,7 @@ public enum SignUpAttribute: Equatable, Hashable {
     case preferredUsername
     case profile
     case website
-#if os(iOS)
+#if os(iOS) || os(tvOS)
     case custom(attributeKey: AuthUserAttributeKey, textContentType: UITextContentType? = nil)
 #elseif os(macOS)
     case custom(attributeKey: AuthUserAttributeKey, textContentType: NSTextContentType? = nil)
@@ -78,7 +78,7 @@ public enum SignUpAttribute: Equatable, Hashable {
         }
     }
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
     var keyboardType: UIKeyboardType {
         switch self {
         case .email:
@@ -185,7 +185,7 @@ extension CognitoConfiguration.SignUpAttribute {
             return .profile
         case .website:
             return .website
-        }
+		}
     }
 }
 

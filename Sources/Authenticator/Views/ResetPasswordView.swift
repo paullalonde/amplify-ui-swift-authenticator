@@ -53,7 +53,7 @@ public struct ResetPasswordView<Header: View,
             
             createUsernameInput(for: authenticatorState.configuration.usernameAttribute)
                 .textContentType(.username)
-            #if os(iOS)
+            #if os(iOS) || os(tvOS)
                 .textInputAutocapitalization(.never)
             #endif
                       
@@ -85,7 +85,7 @@ public struct ResetPasswordView<Header: View,
                 placeholder: "authenticator.field.username.placeholder".localized(),
                 validator: usernameValidator
             )
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
             .keyboardType(.default)
         #endif
         case .email:
@@ -95,7 +95,7 @@ public struct ResetPasswordView<Header: View,
                 placeholder: "authenticator.field.email.placeholder".localized(),
                 validator: usernameValidator
             )
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
             .keyboardType(.emailAddress)
         #endif
         case .phoneNumber:
@@ -105,7 +105,7 @@ public struct ResetPasswordView<Header: View,
                 placeholder: "authenticator.field.phoneNumber.placeholder".localized(),
                 validator: usernameValidator
             )
-        #if os(iOS)
+		#if os(iOS) || os(tvOS)
             .keyboardType(.phonePad)
         #endif
         }

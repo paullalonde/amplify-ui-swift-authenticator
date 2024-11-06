@@ -88,7 +88,7 @@ public struct ContinueSignInWithTOTPSetupView<Header: View,
                 validator: codeValidator
             )
             .textContentType(.oneTimeCode)
-#if os(iOS)
+#if os(iOS) || os(tvOS)
             .keyboardType(.default)
 #endif
 

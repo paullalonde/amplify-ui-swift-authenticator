@@ -102,7 +102,7 @@ struct PhoneNumberField: View {
                     .textFieldStyle(.plain)
                     .frame(height: Platform.isMacOS ? 20 : 25)
                     .padding([.top, .bottom, .leading], theme.components.field.padding)
-                #if os(iOS)
+                #if os(iOS) || os(tvOS)
                     .autocapitalization(.none)
                     .keyboardType(.numberPad)
                 #endif
@@ -180,9 +180,9 @@ struct CallingCodeField: View {
                     .frame(width: 55, height: 35)
             }
         )
-        .buttonStyle(.borderless)
+//        .buttonStyle(.borderless)
         .sheet(isPresented: $isShowingList) {
-            if #available(iOS 16.0, macOS 13.0, *) {
+			if #available(iOS 16.0, macOS 13.0, tvOS 17.0, *) {
                 allRegionsContent
                     .presentationDetents([.medium, .large])
             } else {
@@ -206,6 +206,16 @@ struct CallingCodeField: View {
             prompt: "authenticator.countryCodes.search".localized()
         )
         .keyboardType(.default)
+	#elseif os(tvOS)
+		NavigationView {
+			regionList
+		}
+		.searchable(
+			text: $searchRegion,
+			placement: .automatic,
+			prompt: "authenticator.countryCodes.search".localized()
+		)
+		.keyboardType(.default)
     #elseif os(macOS)
         VStack {
             SwiftUI.TextField("authenticator.countryCodes.search".localized(), text: $searchRegion)
@@ -234,7 +244,7 @@ struct CallingCodeField: View {
                         }
                     }
                 )
-                .buttonStyle(.borderless)
+//                .buttonStyle(.borderless)
                 .accessibilityLabel(Text("\(region.name), \(region.callingCode)"))
                 .accessibilityRemoveTraits(.isButton)
             }

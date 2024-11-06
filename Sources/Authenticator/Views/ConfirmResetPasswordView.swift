@@ -74,7 +74,7 @@ public struct ConfirmResetPasswordView<Header: View,
             )
             .focused(focusedField.projectedValue, equals: .confirmationCode)
             .textContentType(.oneTimeCode)
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
             .keyboardType(.default)
         #endif
 
@@ -85,7 +85,7 @@ public struct ConfirmResetPasswordView<Header: View,
                 validator: passwordValidator
             )
             .focused(focusedField.projectedValue, equals: .newPassword)
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
             .textContentType(.newPassword)
             .textInputAutocapitalization(.never)
         #elseif os(macOS)
@@ -99,7 +99,7 @@ public struct ConfirmResetPasswordView<Header: View,
                 validator: confirmPasswordValidator
             )
             .focused(focusedField.projectedValue, equals: .newPasswordConfirmation)
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
             .textContentType(.newPassword)
             .textInputAutocapitalization(.never)
         #elseif os(macOS)

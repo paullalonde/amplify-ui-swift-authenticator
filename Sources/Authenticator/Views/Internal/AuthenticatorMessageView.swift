@@ -24,7 +24,7 @@ private struct AuthenticatorMessageModifier: ViewModifier {
     }
 
     func body(content: Content) -> some View {
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
         content
             .fullScreenCover(isPresented: .constant(message != nil)) {
                 messageContent
@@ -121,7 +121,7 @@ private struct AuthenticatorMessageView: View {
     }
 }
 
-#if os(iOS)
+#if os(iOS) || os(tvOS)
 struct ClearBackgroundView: UIViewRepresentable {
     func makeUIView(context: Context) -> UIView {
         return InnerView()

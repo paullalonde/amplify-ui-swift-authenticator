@@ -72,7 +72,7 @@ public struct SignInView<Header: View,
             createUsernameInput(for: authenticatorState.configuration.usernameAttribute)
                 .focused(focusedField.projectedValue, equals: .username)
                 .textContentType(.username)
-            #if os(iOS)
+            #if os(iOS) || os(tvOS)
                 .textInputAutocapitalization(.never)
             #endif
 
@@ -84,7 +84,7 @@ public struct SignInView<Header: View,
             )
             .focused(focusedField.projectedValue, equals: .password)
             .textContentType(.password)
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
             .textInputAutocapitalization(.never)
         #endif
 
@@ -163,7 +163,7 @@ public struct SignInView<Header: View,
                 placeholder: "authenticator.field.username.placeholder".localized(),
                 validator: usernameValidator
             )
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
             .keyboardType(.default)
         #endif
 
@@ -174,7 +174,7 @@ public struct SignInView<Header: View,
                 placeholder: "authenticator.field.email.placeholder".localized(),
                 validator: usernameValidator
             )
-        #if os(iOS)
+		#if os(iOS) || os(tvOS)
             .keyboardType(.emailAddress)
         #endif
 
@@ -185,7 +185,7 @@ public struct SignInView<Header: View,
                 placeholder: "authenticator.field.phoneNumber.placeholder".localized(),
                 validator: usernameValidator
             )
-        #if os(iOS)
+        #if os(iOS) || os(tvOS)
             .keyboardType(.numberPad)
         #endif
         }

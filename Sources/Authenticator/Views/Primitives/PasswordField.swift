@@ -67,7 +67,7 @@ struct PasswordField: View {
                     .textFieldStyle(.plain)
                     .frame(height: Platform.isMacOS ? 20 : 25)
                     .padding([.top, .bottom, .leading], theme.components.field.padding)
-                #if os(iOS)
+                #if os(iOS) || os(tvOS)
                     .autocapitalization(.none)
                 #endif
 

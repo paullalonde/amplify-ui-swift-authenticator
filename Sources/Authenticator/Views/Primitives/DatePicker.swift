@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+#if UNUSED
+
 /// This field allows the user to select a date and parse it to a ISO-8601 format.
 /// It allows to select a date by revealing a native `SwiftUI.DatePicker` when tapped.
 /// It also applies Amplify UI theming
@@ -237,3 +239,5 @@ struct DatePicker: View {
         TimeZone(secondsFromGMT: 0) ?? TimeZone.current
     }
 }
+
+#endif

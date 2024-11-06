@@ -9,14 +9,17 @@ import Foundation
 
 enum Platform {
     case macOS
-    case iOS
+	case iOS
+	case tvOS
     case unsupported
 
     static var current: Platform {
     #if os(macOS)
         return .macOS
-    #elseif os(iOS)
+	#elseif os(iOS)
         return .iOS
+	#elseif os(tvOS)
+        return .tvOS
     #else
         return .unsupported
     #endif
