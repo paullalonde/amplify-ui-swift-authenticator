@@ -48,13 +48,17 @@ struct SignUpInputField: View {
                     placeholder: field.placeholder,
                     validator: validator
                 )
-//            case .date:
-//                DatePicker(
-//                    field.displayedLabel,
-//                    text: $field.value,
-//                    placeholder: field.placeholder,
-//                    validator: validator
-//                )
+            case .date:
+            #if os(tvOS)
+                EmptyView()
+            #else
+                DatePicker(
+                    field.displayedLabel,
+                    text: $field.value,
+                    placeholder: field.placeholder,
+                    validator: validator
+                )
+            #endif
             case .phoneNumber:
                 PhoneNumberField(
                     field.displayedLabel,
@@ -62,8 +66,6 @@ struct SignUpInputField: View {
                     placeholder: field.placeholder,
                     validator: validator
                 )
-			default:
-				EmptyView()
             }
         }
         .textContentType(field.attributeType.textContentType)
